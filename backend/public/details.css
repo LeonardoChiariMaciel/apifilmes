@@ -1,0 +1,57 @@
+/* Estilos para a página de detalhes do filme */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #141414;
+    color: #fff;
+}
+
+#details-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+}
+
+#details-container h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #e50914;
+}
+
+#details-container img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#details-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#details-container .release-date {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.back-btn {
+    background-color: #e50914;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.back-btn:hover {
+    background-color: #b20710;
+}

@@ -23,12 +23,19 @@ router.get('/popular', async (req, res) => {
 
 router.get('/details', async (req, res) => {
   const { id, type = 'movie' } = req.query;
-  try{
-    const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=pt-BR`;
-  }
-  catch (error){
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/${type}/${id}`, {
+      params: {
+        api_key: API_KEY,
+        language: 'pt-BR',
+      },
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Erro ao buscar detalhes do filme:', error.message);
     res.status(500).json({ error: 'Erro ao buscar detalhes do filme' });
   }
 });
+
 
 module.exports = router;
