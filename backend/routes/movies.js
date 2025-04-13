@@ -21,4 +21,14 @@ router.get('/popular', async (req, res) => {
   }
 });
 
+router.get('/details', async (req, res) => {
+  const { id, type = 'movie' } = req.query;
+  try{
+    const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=pt-BR`;
+  }
+  catch (error){
+    res.status(500).json({ error: 'Erro ao buscar detalhes do filme' });
+  }
+});
+
 module.exports = router;

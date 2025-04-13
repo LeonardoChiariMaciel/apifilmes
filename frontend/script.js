@@ -14,7 +14,6 @@ async function fetchMovies(type = 'movie') {
 }
 
 function renderMovies(movies) {
-  console.log('Filmes para renderizar:', movies);
   container.innerHTML = '';
   movies.forEach(movie => {
     const div = document.createElement('div');
@@ -23,9 +22,13 @@ function renderMovies(movies) {
       <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title || movie.name}" />
       <h3>${movie.title || movie.name}</h3>
     `;
+    div.addEventListener('click', () => {
+      window.location.href = `details.html?id=${movie.id}&type=${typeSelect.value}`;
+    });
     container.appendChild(div);
   });
 }
+
 
 typeSelect.addEventListener('change', () => {
   fetchMovies(typeSelect.value);
