@@ -3,12 +3,6 @@ const container = document.getElementById('movies-container');
 const typeSelect = document.getElementById('type-select');
 const extraSelect = document.getElementById('extra-select');
 
-if(extraSelect === "Populares"){
-  extraSelect = popular;
-}
-else if(extraSelect === "Em exibição"){
-  extraSelect = now_playing;
-}
 
 async function fetchMovies(type = 'movie', category = 'popular') {
   try {
@@ -39,10 +33,11 @@ function renderMovies(movies) {
 
 
 typeSelect.addEventListener('change', () => {
-  fetchMovies(typeSelect.value);
+  fetchMovies(typeSelect.value, extraSelect.value);
 });
 extraSelect.addEventListener('change', () => {
-  fetchMovies(extraSelect.value);
+  fetchMovies(typeSelect.value, extraSelect.value);
 });
 
-fetchMovies();
+
+fetchMovies(typeSelect.value, extraSelect.value);
