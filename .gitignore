@@ -1,20 +1,15 @@
 # node_modules
 node_modules/
-
 # Arquivos de ambiente
 backend/.env
-
 # Logs
 *.log
-
 # Pastas de build/output
 dist/
 build/
-
 # Arquivos do sistema
 .DS_Store
 Thumbs.db
-
 # Arquivos de certificados e chaves privadas
 *.pem
 *.key
