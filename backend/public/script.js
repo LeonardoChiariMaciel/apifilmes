@@ -1,12 +1,16 @@
 const container = document.getElementById('movies-container');
 //const searchInput = document.getElementById('search-input');
 const typeSelect = document.getElementById('type-select');
-const extraSelect = document.getElementById('extra-select');
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button'); 
 
-
-async function fetchMovies(type = 'movie', category = 'popular') {
+async function fetchMovies(type = 'movie', category = 'popular', query = '') {
   try {
-    const res = await fetch(`http://localhost:3000/api/movies/${category}?type=${type}`);
+    let url = `http://localhost:3000/api/movies/${category}?type=${type}`;
+    if (query) {
+      url = `http://localhost:3000/api/movies/search?type=${type}&query=${query}`;
+    }
+    const res = await fetch(url);
     const data = await res.json();
     console.log('Dados recebidos:', data);
     renderMovies(data);
@@ -33,11 +37,18 @@ function renderMovies(movies) {
 
 
 typeSelect.addEventListener('change', () => {
-  fetchMovies(typeSelect.value, extraSelect.value);
+  fetchMovies(typeSelect.value);
 });
 extraSelect.addEventListener('change', () => {
-  fetchMovies(typeSelect.value, extraSelect.value);
+  fetchMovies(typeSelect.value);
 });
 
 
-fetchMovies(typeSelect.value, extraSelect.value);
+fetchMovies(typeSelect.value);
+
+searchButton.addEventListener('click', () => {
+  const query = searchInput.value.trim();
+  if (query) {
+    fetchMovies(typeSelect.value, 'search', query);
+  }
+});

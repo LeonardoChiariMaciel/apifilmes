@@ -54,5 +54,21 @@ router.get('/details', async (req, res) => {
   }
 });
 
-
-module.exports = router;
+router.get('/search', async (req, res) => {
+  const { type = 'movie', query } = req.query;
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/search/${type}`, {
+      params: {
+        api_key: API_KEY,
+        language: 'pt-BR',
+        query,
+        page: 1,
+        include_adult: false,
+      },
+    });
+    res.json(response.data.results);
+  } catch (error) {
+    console.error('Erro ao buscar filmes:', error.message);
+    res.status(500).json({ error: 'Erro ao buscar filmes' });
+  }
+});
